@@ -29,8 +29,13 @@ h4, h1, .result {
     margin-left: 3%;
     text-align: center;
     width: 45%;
+}
 
-
+#boxsolo {
+    background-color: #FFF;
+    border-radius: 15px;
+    text-align: center;
+    /*margin: 0 auto;*/
 }
 
 #choice-row {
@@ -42,4 +47,10 @@ h4, h1, .result {
     background-color: lightblue;
     padding: 10px;
     border-radius: 15px;
+}
+
+select {
+    margin: 0 auto;
+    display: block;
+    font-size: 30px;
 }

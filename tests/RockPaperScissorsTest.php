@@ -14,7 +14,7 @@
 
             $result = $test_RockPaperScissors->winChecker($first_input, $second_input);
 
-            $this->assertEquals("Player 2 wins with Dragon", $result);
+            $this->assertEquals("Player 2's Dragon beats Player 1's Gun", $result);
         }
 
         function test_draw()

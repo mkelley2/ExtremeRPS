@@ -24,32 +24,52 @@
 
     $app->get("/", function() use ($app) {
         // return "Play!";
-        return $app['twig']->render('form.html.twig',array('all_games'=>array(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
+        return $app['twig']->render('form.html.twig',array('all_games'=>array(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf"), 'state' => "default"));
+    });
+    $app->post("/", function() use ($app) {
+        if(isset($_POST['player-choice'])) {
+            $_SESSION['state'] = $_POST['player-choice'];
+        }
+        return $app['twig']->render('play.html.twig',array('all_games'=>array(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf"), 'state' => $_SESSION['state']));
+
     });
 
-    $app->post("/", function() use ($app) {
-        $new_game = new RockPaperScissors();
+    $app->post("/play", function() use ($app) {
 
-        if(isset($_POST['choice1']) && isset($_POST['choice2'])) {
-            $clicked1 = $_POST['choice1'];
-            $clicked2 = $_POST['choice2'];
-        }else{
-            return "nope";
+        $new_game = new RockPaperScissors();
+        $state = $_SESSION['state'];
+        if($state == 'single') {
+            if(isset($_POST['choice1'])) {
+                $clicked1 = $_POST['choice1'];
+            }else{
+                return "nope";
+            }
+
+            $player1 = $new_game->player1InputSetup($clicked1);
+            $player2 = $new_game->computerInputSetup();
+        } else {
+            if(isset($_POST['choice1']) && isset($_POST['choice2'])) {
+                $clicked1 = $_POST['choice1'];
+                $clicked2 = $_POST['choice2'];
+            }else{
+                return "nope";
+            }
+
+            $player1 = $new_game->player1InputSetup($clicked1);
+            $player2 = $new_game->player2InputSetup($clicked2);
         }
 
-        $player1 = $new_game->player1InputSetup($clicked1);
-        $player2 = $new_game->player2InputSetup($clicked2);
         $results = $new_game->winChecker($player1, $player2);
         $new_game->save($results);
 
 
-        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(), 'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
+        return $app['twig']->render('play.html.twig',array('state' => $state, 'all_games' => RockPaperScissors::getAll(), 'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
     });
 
     $app->post("/delete", function() use ($app) {
         RockPaperScissors::deleteAll();
 
-        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
+        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf"), 'state' => 'default'));
     });
 
     return $app;

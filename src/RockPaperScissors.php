@@ -57,6 +57,15 @@
             return array('player'=>"Player 2", 'choice'=>$clicked_choice);
         }
 
+        function computerInputSetup()
+        {
+            $play_options = array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf");
+
+            $option_index = rand(0, count($play_options)-1);
+
+            return array('player'=>"Computer", 'choice'=>$play_options[$option_index]);
+        }
+
         function save($results)
         {
             array_unshift($_SESSION['game_rounds'], $results);
