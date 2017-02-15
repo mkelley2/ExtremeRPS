@@ -13,164 +13,28 @@
                 <div class="row" id="choice-row">
                     <div class="col-md-6" id="box1">
                         <h1>Player 1</h1>
+                        {%for item in moves %}
                         <label>
-                            <input type="radio" name="choice1" value="Rock" checked>
-                            <img src="/img/rock.png">
-                            <h4>Rock</h4>
+                            <input type="radio" name="choice1" value="{{item}}" checked>
+                            <img src="/img/{{item}}.png">
+                            <h4>{{item}}</h4>
                         </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Air">
-                            <img src="/img/air.png">
-                            <h4>Air</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Devil">
-                            <img src="/img/devil.png">
-                            <h4>Devil</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Dragon">
-                            <img src="/img/dragon.png">
-                            <h4>Dragon</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Fire">
-                            <img src="/img/fire.png">
-                            <h4>Fire</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Gun">
-                            <img src="/img/gun.png">
-                            <h4>Gun</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Human">
-                            <img src="/img/human.png">
-                            <h4>Human</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Lightning">
-                            <img src="/img/lightning.png">
-                            <h4>Lightning</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Paper">
-                            <img src="/img/paper.png">
-                            <h4>Paper</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Scissors">
-                            <img src="/img/scissors.png">
-                            <h4>Scissors</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Snake">
-                            <img src="/img/snake.png">
-                            <h4>Snake</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Sponge">
-                            <img src="/img/sponge.png">
-                            <h4>Sponge</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Tree">
-                            <img src="/img/tree.png">
-                            <h4>Tree</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Water">
-                            <img src="/img/water.png">
-                            <h4>Water</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice1" value="Wolf">
-                            <img src="/img/wolf.png">
-                            <h4>Wolf</h4>
-                        </label>
+                        {% endfor %}
                     </div>
                     <div class="col-md-6" id="box2">
                         <h1>Player 2</h1>
+                        {%for item in moves %}
                         <label>
-                            <input type="radio" name="choice2" value="Rock" checked>
-                            <img src="/img/rock.png">
-                            <h4>Rock</h4>
+                            <input type="radio" name="choice2" value="{{item}}" checked>
+                            <img src="/img/{{item}}.png">
+                            <h4>{{item}}</h4>
                         </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Air">
-                            <img src="/img/air.png">
-                            <h4>Air</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Devil">
-                            <img src="/img/devil.png">
-                            <h4>Devil</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Dragon">
-                            <img src="/img/dragon.png">
-                            <h4>Dragon</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Fire">
-                            <img src="/img/fire.png">
-                            <h4>Fire</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Gun">
-                            <img src="/img/gun.png">
-                            <h4>Gun</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Human">
-                            <img src="/img/human.png">
-                            <h4>Human</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Lightning">
-                            <img src="/img/lightning.png">
-                            <h4>Lightning</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Paper">
-                            <img src="/img/paper.png">
-                            <h4>Paper</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Scissors">
-                            <img src="/img/scissors.png">
-                            <h4>Scissors</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Snake">
-                            <img src="/img/snake.png">
-                            <h4>Snake</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Sponge">
-                            <img src="/img/sponge.png">
-                            <h4>Sponge</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Tree">
-                            <img src="/img/tree.png">
-                            <h4>Tree</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Water">
-                            <img src="/img/water.png">
-                            <h4>Water</h4>
-                        </label>
-                        <label>
-                            <input type="radio" name="choice2" value="Wolf">
-                            <img src="/img/wolf.png">
-                            <h4>Wolf</h4>
-                        </label>
+                        {% endfor %}
 
                     </div>
                 </div>
                 <div class="row submitBtn">
-                    <button type="submit" class="btn btn-info">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
             <br><br>
@@ -182,11 +46,17 @@
                 </form>
 
                 <h1>Game Results:</h1>
+
                 {% if all_games is not empty %}
-                    {% for game in all_games %}
-                        <h2>{{ game }}</h2>
+                    {% for i in 0..(all_games|length-1) %}
+                        {% if i == 0 %}
+                            <h2><strong>{{ all_games[0] }}</strong></h2>
+                        {% else %}
+                            <h2>{{ all_games[i] }}</h2>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
+
 
             </div>
         </div>

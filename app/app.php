@@ -24,7 +24,7 @@
 
     $app->get("/", function() use ($app) {
         // return "Play!";
-        return $app['twig']->render('form.html.twig',array('all_games'=>array()));
+        return $app['twig']->render('form.html.twig',array('all_games'=>array(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
     });
 
     $app->post("/", function() use ($app) {
@@ -43,13 +43,13 @@
         $new_game->save($results);
 
 
-        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll()));
+        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(), 'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
     });
 
     $app->post("/delete", function() use ($app) {
         RockPaperScissors::deleteAll();
 
-        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll()));
+        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
     });
 
     return $app;
