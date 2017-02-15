@@ -24,35 +24,30 @@
 
     $app->get("/", function() use ($app) {
         // return "Play!";
-        return $app['twig']->render('form.html.twig',array('results'=>array()));
-    });
-
-    $app->post("/clicked", function() use ($app) {
-        if(isset($_POST['choice1']) && isset($_POST['choice2'])) {
-            $clicked1 = $_POST['choice1'];
-            $clicked2 = $_POST['choice2'];
-            return $app['twig']->render('clicked.html.twig',array('result1'=>$clicked1, 'result2' => $clicked2));
-        }else{
-            return "nope";
-        }
+        return $app['twig']->render('form.html.twig',array('all_games'=>array()));
     });
 
     $app->post("/", function() use ($app) {
         $new_game = new RockPaperScissors();
-        $player1Input=$_POST['player1Input'];
-        $player2Input =$_POST['player2Input'];
 
-
-
-        $player1 = $new_game->player1InputSetup($player1Input);
-        $player2 = $new_game->player2InputSetup($player2Input);
-
-        if($player1==="invalid" || $player2==="invalid"){
-            return $app['twig']->render('form.html.twig',array("results" => "Please enter a valid move"));
+        if(isset($_POST['choice1']) && isset($_POST['choice2'])) {
+            $clicked1 = $_POST['choice1'];
+            $clicked2 = $_POST['choice2'];
+        }else{
+            return "nope";
         }
+
+        $player1 = $new_game->player1InputSetup($clicked1);
+        $player2 = $new_game->player2InputSetup($clicked2);
         $results = $new_game->winChecker($player1, $player2);
         $new_game->save($results);
 
+
+        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll()));
+    });
+
+    $app->post("/delete", function() use ($app) {
+        RockPaperScissors::deleteAll();
 
         return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll()));
     });

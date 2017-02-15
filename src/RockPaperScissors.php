@@ -8,53 +8,53 @@
             }else{
                 $position = array_search($player2input['choice'], $player1input['beats']);
                 if($position!==false){
-                    return $player1input['player'] . " wins with " . $player1input['choice'];
+                    return $player1input['player'] . "'s " . $player1input['choice'] . " beats " . $player2input['player'] . "'s " . $player2input['choice'];
                 }else{
-                    return $player2input['player'] . " wins with " . $player2input['choice'];
+                    return $player2input['player'] . "'s " . $player2input['choice'] . " beats " . $player1input['player'] . "'s " . $player1input['choice'];
                 }
             }
         }
 
-        function player1InputSetup()
+        function player1InputSetup($clicked_choice)
         {
-            if($_POST['player1Input']==="Rock"){
+            if($clicked_choice==="Rock"){
                 $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Snake', 'Scissors', 'Fire');
-            }else if($_POST['player1Input']==="Fire"){
+            }else if($clicked_choice==="Fire"){
                 $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Snake', 'Scissors', 'Paper');
-            }else if($_POST['player1Input']==="Scissors"){
+            }else if($clicked_choice==="Scissors"){
                 $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Snake', 'Air', 'Paper');
-            }else if($_POST['player1Input']==="Snake"){
+            }else if($clicked_choice==="Snake"){
                 $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Water', 'Air', 'Paper');
-            }else if($_POST['player1Input']==="Human"){
+            }else if($clicked_choice==="Human"){
                 $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($_POST['player1Input']==="Tree"){
+            }else if($clicked_choice==="Tree"){
                 $player1Beats = array('Sponge', 'Wolf', 'Devil', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($_POST['player1Input']==="Wolf"){
+            }else if($clicked_choice==="Wolf"){
                 $player1Beats = array('Sponge', 'Lightning', 'Devil', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($_POST['player1Input']==="Sponge"){
+            }else if($clicked_choice==="Sponge"){
                 $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($_POST['player1Input']==="Paper"){
+            }else if($clicked_choice==="Paper"){
                 $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Water', 'Air', 'Rock');
-            }else if($_POST['player1Input']==="Air"){
+            }else if($clicked_choice==="Air"){
                 $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Water', 'Fire', 'Rock');
-            }else if($_POST['player1Input']==="Water"){
+            }else if($clicked_choice==="Water"){
                 $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Scissors', 'Fire', 'Rock');
-            }else if($_POST['player1Input']==="Dragon"){
+            }else if($clicked_choice==="Dragon"){
                 $player1Beats = array('Gun', 'Lightning', 'Devil', 'Snake', 'Scissors', 'Fire', 'Rock');
-            }else if($_POST['player1Input']==="Devil"){
+            }else if($clicked_choice==="Devil"){
                 $player1Beats = array('Gun', 'Lightning', 'Human', 'Snake', 'Scissors', 'Fire', 'Rock');
-            }else if($_POST['player1Input']==="Lightning"){
+            }else if($clicked_choice==="Lightning"){
                 $player1Beats = array('Gun', 'Tree', 'Human', 'Snake', 'Scissors', 'Fire', 'Rock');
-            }else if($_POST['player1Input']==="Gun"){
+            }else if($clicked_choice==="Gun"){
                 $player1Beats = array('Wolf', 'Tree', 'Human', 'Snake', 'Scissors', 'Fire', 'Rock');
             }
 
-            return array('player'=>"Player 1", 'choice'=>$_POST['player1Input'], 'beats'=>$player1Beats);
+            return array('player'=>"Player 1", 'choice'=>$clicked_choice, 'beats'=>$player1Beats);
         }
 
-        function player2InputSetup()
+        function player2InputSetup($clicked_choice)
         {
-            return array('player'=>"Player 2", 'choice'=>$_POST['player2Input']);
+            return array('player'=>"Player 2", 'choice'=>$clicked_choice);
         }
 
         function save($results)
