@@ -10,7 +10,7 @@ input[type="radio"]:checked + img {
     margin: 0 auto;
 }
 
-h4, h1, .result {
+h4, h1, h2, .result {
     text-align: center;
 }
 
@@ -53,4 +53,9 @@ select {
     margin: 0 auto;
     display: block;
     font-size: 30px;
+}
+
+#guide {
+    margin: 0 auto;
+    display: block;
 }
