@@ -27,6 +27,16 @@
         return $app['twig']->render('form.html.twig',array('results'=>array()));
     });
 
+    $app->post("/clicked", function() use ($app) {
+        if(isset($_POST['choice1']) && isset($_POST['choice2'])) {
+            $clicked1 = $_POST['choice1'];
+            $clicked2 = $_POST['choice2'];
+            return $app['twig']->render('clicked.html.twig',array('result1'=>$clicked1, 'result2' => $clicked2));
+        }else{
+            return "nope";
+        }
+    });
+
     $app->post("/", function() use ($app) {
         $new_game = new RockPaperScissors();
         $player1Input=$_POST['player1Input'];

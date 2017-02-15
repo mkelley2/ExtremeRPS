@@ -2,29 +2,148 @@
 <html>
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css" charset="utf-8">
         <title>Rock Paper Scissors Game</title>
     </head>
     <body>
         <div class="container">
             <h1>Rock Paper Scissors Game</h1>
-            <div class="form-group">
-                <form action="/" method="post">
-                    <label for="player1Input">Player 1: Enter R, P, or S:</label>
-                    <input type="password" name="player1Input" class="form-control" maxlength="1">
-                    <br>
-                    <label for="player2Input">Player 2: Enter R, P, or S:</label>
-                    <input type="password" name="player2Input" class="form-control" maxlength="1">
+            <form action="/clicked" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>
+                            <input type="radio" name="choice1" value="Rock">
+                            <img src="/img/rock.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Air">
+                            <img src="/img/air.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Devil">
+                            <img src="/img/devil.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Dragon">
+                            <img src="/img/dragon.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Fire">
+                            <img src="/img/fire.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Gun">
+                            <img src="/img/gun.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Human">
+                            <img src="/img/human.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Lightning">
+                            <img src="/img/lightning.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Paper">
+                            <img src="/img/paper.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Scissors">
+                            <img src="/img/scissors.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Snake">
+                            <img src="/img/snake.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Sponge">
+                            <img src="/img/sponge.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Tree">
+                            <img src="/img/tree.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Water">
+                            <img src="/img/water.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice1" value="Wolf">
+                            <img src="/img/wolf.png">
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label>
+                            <input type="radio" name="choice2" value="Rock">
+                            <img src="/img/rock.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Air">
+                            <img src="/img/air.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Devil">
+                            <img src="/img/devil.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Dragon">
+                            <img src="/img/dragon.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Fire">
+                            <img src="/img/fire.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Gun">
+                            <img src="/img/gun.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Human">
+                            <img src="/img/human.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Lightning">
+                            <img src="/img/lightning.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Paper">
+                            <img src="/img/paper.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Scissors">
+                            <img src="/img/scissors.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Snake">
+                            <img src="/img/snake.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Sponge">
+                            <img src="/img/sponge.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Tree">
+                            <img src="/img/tree.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Water">
+                            <img src="/img/water.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="choice2" value="Wolf">
+                            <img src="/img/wolf.png">
+                        </label>
 
+                    </div>
+                </div>
+                <div class="row submitBtn">
                     <button type="submit" class="btn btn-info">Submit</button>
-                </form>
-            </div>
+                </div>
+            </form>
+            <br><br>
 
             <div class="result">
-                {% if all_games is not empty %}
-                    {% for game in all_games %}
-                        <h2>{{ game }}</h2>
-                    {% endfor %}
-                {% endif %}
+
             </div>
         </div>
     </body>
