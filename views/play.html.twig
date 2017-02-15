@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" integrity="sha384-HzUaiJdCTIY/RL2vDPRGdEQHHahjzwoJJzGUkYjHVzTwXFQ2QN/nVgX7tzoMW3Ov" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css" charset="utf-8">
+        <title>Extreme Rock Paper Scissors Game</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Extreme Rock Paper Scissors Game</h1>
+
+            {% if state == 'double' %}
+                <form action="/play" method="post" id="whole-form">
+                    <div class="row" id="choice-row">
+                        <div class="col-md-6" id="box1">
+                            <h1>Player 1</h1>
+                            {%for item in moves %}
+                            <label>
+                                <input type="radio" name="choice1" value="{{item}}" checked>
+                                <img src="/img/{{item}}.png">
+                                <h4>{{item}}</h4>
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-6" id="box2">
+                            <h1>Player 2</h1>
+                            {%for item in moves %}
+                            <label>
+                                <input type="radio" name="choice2" value="{{item}}" checked>
+                                <img src="/img/{{item}}.png">
+                                <h4>{{item}}</h4>
+                            </label>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="row submitBtn">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+                <br><br>
+            {% else %}
+            <form action="/play" method="post" id="whole-form">
+                <div class="row" id="choice-row">
+                    <div class="col-md-6 col-md-offset-3" id="boxsolo">
+                        <h1>Player 1</h1>
+                        {%for item in moves %}
+                        <label>
+                            <input type="radio" name="choice1" value="{{item}}" checked>
+                            <img src="/img/{{item}}.png">
+                            <h4>{{item}}</h4>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row submitBtn">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+            {% endif %}
+            <br><br>
+
+            <div class="result">
+
+                <form class="form-group" action="/delete" method="post">
+                    <button type="submit" name="button" class="btn btn-danger">Clear games</button>
+                </form>
+
+                <h1>Game Results:</h1>
+
+                {% if all_games is not empty %}
+                    {% for i in 0..(all_games|length-1) %}
+                        {% if i == 0 %}
+                            <h2><strong>{{ all_games[0] }}</strong></h2>
+                        {% else %}
+                            <h2>{{ all_games[i] }}</h2>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+
+            </div>
+        </div>
+    </body>
+</html>
