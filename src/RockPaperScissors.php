@@ -17,36 +17,36 @@
 
         function player1InputSetup($clicked_choice)
         {
-            if($clicked_choice==="Rock"){
-                $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Snake', 'Scissors', 'Fire');
-            }else if($clicked_choice==="Fire"){
-                $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Snake', 'Scissors', 'Paper');
-            }else if($clicked_choice==="Scissors"){
-                $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Snake', 'Air', 'Paper');
-            }else if($clicked_choice==="Snake"){
-                $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Human', 'Water', 'Air', 'Paper');
-            }else if($clicked_choice==="Human"){
-                $player1Beats = array('Sponge', 'Wolf', 'Tree', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($clicked_choice==="Tree"){
-                $player1Beats = array('Sponge', 'Wolf', 'Devil', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($clicked_choice==="Wolf"){
-                $player1Beats = array('Sponge', 'Lightning', 'Devil', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($clicked_choice==="Sponge"){
-                $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Water', 'Air', 'Paper');
-            }else if($clicked_choice==="Paper"){
-                $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Water', 'Air', 'Rock');
-            }else if($clicked_choice==="Air"){
-                $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Water', 'Fire', 'Rock');
-            }else if($clicked_choice==="Water"){
-                $player1Beats = array('Gun', 'Lightning', 'Devil', 'Dragon', 'Scissors', 'Fire', 'Rock');
-            }else if($clicked_choice==="Dragon"){
-                $player1Beats = array('Gun', 'Lightning', 'Devil', 'Snake', 'Scissors', 'Fire', 'Rock');
-            }else if($clicked_choice==="Devil"){
-                $player1Beats = array('Gun', 'Lightning', 'Human', 'Snake', 'Scissors', 'Fire', 'Rock');
-            }else if($clicked_choice==="Lightning"){
-                $player1Beats = array('Gun', 'Tree', 'Human', 'Snake', 'Scissors', 'Fire', 'Rock');
-            }else if($clicked_choice==="Gun"){
-                $player1Beats = array('Wolf', 'Tree', 'Human', 'Snake', 'Scissors', 'Fire', 'Rock');
+            if($clicked_choice==="rock"){
+                $player1Beats = array('sponge', 'wolf', 'tree', 'human', 'snake', 'scissors', 'fire');
+            }else if($clicked_choice==="fire"){
+                $player1Beats = array('sponge', 'wolf', 'tree', 'human', 'snake', 'scissors', 'paper');
+            }else if($clicked_choice==="scissors"){
+                $player1Beats = array('sponge', 'wolf', 'tree', 'human', 'snake', 'air', 'paper');
+            }else if($clicked_choice==="snake"){
+                $player1Beats = array('sponge', 'wolf', 'tree', 'human', 'water', 'air', 'paper');
+            }else if($clicked_choice==="human"){
+                $player1Beats = array('sponge', 'wolf', 'tree', 'dragon', 'water', 'air', 'paper');
+            }else if($clicked_choice==="tree"){
+                $player1Beats = array('sponge', 'wolf', 'devil', 'dragon', 'water', 'air', 'paper');
+            }else if($clicked_choice==="wolf"){
+                $player1Beats = array('sponge', 'lightning', 'devil', 'dragon', 'water', 'air', 'paper');
+            }else if($clicked_choice==="sponge"){
+                $player1Beats = array('gun', 'lightning', 'devil', 'dragon', 'water', 'air', 'paper');
+            }else if($clicked_choice==="paper"){
+                $player1Beats = array('gun', 'lightning', 'devil', 'dragon', 'water', 'air', 'rock');
+            }else if($clicked_choice==="air"){
+                $player1Beats = array('gun', 'lightning', 'devil', 'dragon', 'water', 'fire', 'rock');
+            }else if($clicked_choice==="water"){
+                $player1Beats = array('gun', 'lightning', 'devil', 'dragon', 'scissors', 'fire', 'rock');
+            }else if($clicked_choice==="dragon"){
+                $player1Beats = array('gun', 'lightning', 'devil', 'snake', 'scissors', 'fire', 'rock');
+            }else if($clicked_choice==="devil"){
+                $player1Beats = array('gun', 'lightning', 'human', 'snake', 'scissors', 'fire', 'rock');
+            }else if($clicked_choice==="lightning"){
+                $player1Beats = array('gun', 'tree', 'human', 'snake', 'scissors', 'fire', 'rock');
+            }else if($clicked_choice==="gun"){
+                $player1Beats = array('wolf', 'tree', 'human', 'snake', 'scissors', 'fire', 'rock');
             }
 
             return array('player'=>"Player 1", 'choice'=>$clicked_choice, 'beats'=>$player1Beats);
@@ -59,7 +59,7 @@
 
         function computerInputSetup()
         {
-            $play_options = array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf");
+            $play_options = array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf");
 
             $option_index = rand(0, count($play_options)-1);
 

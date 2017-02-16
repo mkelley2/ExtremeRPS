@@ -24,13 +24,13 @@
 
     $app->get("/", function() use ($app) {
         // return "Play!";
-        return $app['twig']->render('form.html.twig',array('all_games'=>array(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf"), 'state' => "default"));
+        return $app['twig']->render('form.html.twig',array('all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => "default"));
     });
     $app->post("/", function() use ($app) {
         if(isset($_POST['player-choice'])) {
             $_SESSION['state'] = $_POST['player-choice'];
         }
-        return $app['twig']->render('play.html.twig',array('all_games'=>array(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf"), 'state' => $_SESSION['state']));
+        return $app['twig']->render('play.html.twig',array('all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => $_SESSION['state']));
 
     });
 
@@ -63,13 +63,13 @@
         $new_game->save($results);
 
 
-        return $app['twig']->render('play.html.twig',array('state' => $state, 'all_games' => RockPaperScissors::getAll(), 'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf")));
+        return $app['twig']->render('play.html.twig',array('state' => $state, 'all_games' => RockPaperScissors::getAll(), 'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf")));
     });
 
     $app->post("/delete", function() use ($app) {
         RockPaperScissors::deleteAll();
 
-        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(),'moves'=>array("Rock", "Air", "Devil", "Dragon", "Fire", "Gun", "Human", "Lightning", "Paper", "Scissors", "Snake", "Sponge", "Tree", "Water", "Wolf"), 'state' => 'default'));
+        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => 'default'));
     });
 
     return $app;
