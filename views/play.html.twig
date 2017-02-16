@@ -7,13 +7,14 @@
         <title>Extreme Rock Paper Scissors Game</title>
     </head>
     <body>
-        <div class="container">
-            <h1>Extreme Rock Paper Scissors Game</h1>
+      <div class="container">
+          <h1>Extreme Rock Paper Scissors Game</h1>
 
-            {% if state == 'double' %}
-                <form action="/play" method="post" id="whole-form">
+          {% if state == 'double' %}
+              <div class="whole-form">
+                <form action="/play" method="post">
                     <div class="row" id="choice-row">
-                        <div class="col-md-6" id="box1">
+                        <div class="col-md-4" id="box1">
                             <h1>Player 1</h1>
                             {%for item in moves %}
                             <label>
@@ -23,7 +24,29 @@
                             </label>
                             {% endfor %}
                         </div>
-                        <div class="col-md-6" id="box2">
+                        <div class="col-md-4" id="boxResult">
+                          <div class="row submitBtn">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                          </div>
+                          <div class="result">
+
+
+                              <h1><span>Game Results:</span></h1>
+
+                              {% if all_games is not empty %}
+                                  {% for i in 0..(all_games|length-1) %}
+                                      {% if i == 0 %}
+                                          <h2><strong>{{ all_games[0] }}</strong></h2>
+                                      {% elseif i<=4 %}
+                                          <h2>{{ all_games[i] }}</h2>
+                                      {% endif %}
+                                  {% endfor %}
+                              {% endif %}
+
+
+                          </div>
+                        </div>
+                        <div class="col-md-4" id="box2">
                             <h1>Player 2</h1>
                             {%for item in moves %}
                             <label>
@@ -35,52 +58,54 @@
 
                         </div>
                     </div>
-                    <div class="row submitBtn">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
                 </form>
-                <br><br>
+                <form class="form-group" action="/delete" method="post">
+                  <button type="submit" name="button" class="btn btn-danger">Clear games</button>
+                </form>
+              </div>
+              <br><br>
             {% else %}
-            <form action="/play" method="post" id="whole-form">
-                <div class="row" id="choice-row">
-                    <div class="col-md-6 col-md-offset-3" id="boxsolo">
-                        <h1>Player 1</h1>
-                        {%for item in moves %}
-                        <label>
-                            <input type="radio" name="choice1" value="{{item}}" checked>
-                            <img src="/img/{{item}}.png">
-                            <h4>{{item}}</h4>
-                        </label>
-                        {% endfor %}
+            <div class="whole-form">
+              <div class="row" id="choice-row">
+                <div class="col-md-6" id="boxsolo">
+                  <form action="/play" method="post">
+                    <h1>Player 1</h1>
+                    {%for item in moves %}
+                    <label>
+                      <input type="radio" name="choice1" value="{{item}}" checked>
+                      <img src="/img/{{item}}.png">
+                      <h4>{{item}}</h4>
+                    </label>
+                    {% endfor %}
+                    <div class="row submitBtn">
+                      <button type="submit" class="btn btn-success">Submit</button>
                     </div>
+                  </form>
                 </div>
-                <div class="row submitBtn">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <div class="col-md-6 singleResult">
+                    
+                    
+                    <h1>Game Results:</h1>
+                    
+                    {% if all_games is not empty %}
+                    {% for i in 0..(all_games|length-1) %}
+                    {% if i == 0 %}
+                    <h2><strong>{{ all_games[0] }}</strong></h2>
+                    {% elseif i<=4 %}
+                    <h2>{{ all_games[i] }}</h2>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    
+                    
+                    <form class="form-group" action="/delete" method="post">
+                      <button type="submit" name="button" class="btn btn-danger">Clear games</button>
+                    </form>
                 </div>
-            </form>
+              </div>
+            </div>
             {% endif %}
             <br><br>
-
-            <div class="result">
-
-                <form class="form-group" action="/delete" method="post">
-                    <button type="submit" name="button" class="btn btn-danger">Clear games</button>
-                </form>
-
-                <h1>Game Results:</h1>
-
-                {% if all_games is not empty %}
-                    {% for i in 0..(all_games|length-1) %}
-                        {% if i == 0 %}
-                            <h2><strong>{{ all_games[0] }}</strong></h2>
-                        {% else %}
-                            <h2>{{ all_games[i] }}</h2>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-
-
-            </div>
         </div>
     </body>
 </html>

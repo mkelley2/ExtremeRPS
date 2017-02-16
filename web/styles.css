@@ -5,36 +5,85 @@ input[type="radio"]:checked + img {
     border: 1px solid red;
 }
 
+.container {
+  width: 95%;
+}
+
+
 .btn {
     display: block;
     margin: 0 auto;
+    border-radius: 10px;
+}
+
+.btn-success{
+  margin-top: 2%;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 20px;
+  width:90%;
 }
 
 h4, h1, h2, .result {
     text-align: center;
 }
 
+span {
+  text-decoration: underline;
+}
+
 #box1 {
     background-color: #FFF;
     border-radius: 15px;
-    margin-right: 3%;
-    margin-left: 2%;
+    margin-right: 1%;
+    margin-left: 3%;
     text-align: center;
-    width: 45%;
+    width: 30%;
 }
 
 #box2 {
     background-color: #FFF;
     border-radius: 15px;
-    margin-left: 3%;
+    margin-right: 1%;
+    margin-left: 1%;
     text-align: center;
-    width: 45%;
+    width: 30%;
+}
+
+#boxResult {
+    background-color: #FFF;
+    border-radius: 15px;
+    margin-right: 1%;
+    margin-left: 1%;
+    text-align: center;
+    width: 30%;
+}
+
+#boxResult {
+    background-color: #FFF;
+    border-radius: 15px;
+    margin-right: 1%;
+    margin-left: 1%;
+    text-align: center;
+    width: 30%;
 }
 
 #boxsolo {
     background-color: #FFF;
     border-radius: 15px;
     text-align: center;
+    width:45%;
+    margin-right: 2%;
+    margin-left: 3%;
+    /*margin: 0 auto;*/
+}
+
+.singleResult {
+    background-color: #FFF;
+    border-radius: 15px;
+    text-align: center;
+    width:45%;
+    margin-left: 2%;
     /*margin: 0 auto;*/
 }
 
@@ -43,7 +92,7 @@ h4, h1, h2, .result {
     border-radius: 15px;
 }
 
-#whole-form {
+.whole-form {
     background-color: lightblue;
     padding: 10px;
     border-radius: 15px;
