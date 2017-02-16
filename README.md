@@ -6,7 +6,7 @@
 
 ## Description
 
-This webpage will allow two users to play Rock, Paper, Scissors and display the winner.
+This webpage will allow two users to play the Extreme version of Rock, Paper, Scissors and display the winner.
 
 ## Setup/Installation Requirements
 
@@ -15,14 +15,18 @@ This webpage will allow two users to play Rock, Paper, Scissors and display the 
 3. Create a local server in the /web directory within the project folder using the command: __php -S localhost:8000__ (assuming you are using a mac).
 4. Open the directory http://localhost:8000/ in any standard web browser.
 
+* Or open [Live Site](https://extreme-rps.herokuapp.com/)
+
 ## Specifications
 
 |Behavior|Input|Output|
 |--------|-----|------|
-| Two users enter an option | User 1: "Rock" User 2: "Scissors" | "Player 1 wins with rock" |
-| Two users enter an option | User 1: "Rock" User 2: "Paper" | "Player 2 wins with paper" |
-| Two users enter an option | User 1: "Paper" User 2: "Scissors" | "Player 2 wins with scissors" |
-| Two users enter the same option | User 1: "Rock" User 2: "Rock" | "Players tie" |
+| User selects single game and presses "Play!" | "Single" | Single Player UI is displayed |
+| Users enter an option | User: "Rock" | "Player 1's Rock beats Computer's Scissors" |
+| User selects 2 Player game and presses "Play!" | "2 Player" | Two Player UI is displayed |
+| Two users enter an option | User 1: "Rock" User 2: "Scissors" | "Player 1's Rock beats Computer's Scissors"  |
+| Two users enter the same option | User 1: "Rock" User 2: "Rock" | "Draw" |
+| User presses the clear game button | "Clear Game" | all previous games are wiped and the home screen is displayed |
 
 ## Known Bugs
 
