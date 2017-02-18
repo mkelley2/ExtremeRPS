@@ -9,6 +9,7 @@
     session_start();
 
     if (empty($_SESSION['game_rounds'])) {
+        $_SESSION['score'] = array("player1Score"=>0, "player2Score"=>0);
         $_SESSION['game_rounds'] = array();
     }
 
@@ -24,13 +25,13 @@
 
     $app->get("/", function() use ($app) {
         // return "Play!";
-        return $app['twig']->render('form.html.twig',array('all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => "default"));
+        return $app['twig']->render('form.html.twig',array('score'=>$_SESSION['score'], 'all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => "default"));
     });
     $app->post("/", function() use ($app) {
         if(isset($_POST['player-choice'])) {
             $_SESSION['state'] = $_POST['player-choice'];
         }
-        return $app['twig']->render('play.html.twig',array('all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => $_SESSION['state']));
+        return $app['twig']->render('play.html.twig',array('score'=>$_SESSION['score'], 'all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => $_SESSION['state']));
 
     });
 
@@ -61,15 +62,16 @@
 
         $results = $new_game->winChecker($player1, $player2);
         $new_game->save($results);
+        // var_dump($_SESSION['score']);
 
 
-        return $app['twig']->render('play.html.twig',array('state' => $state, 'all_games' => RockPaperScissors::getAll(), 'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf")));
+        return $app['twig']->render('play.html.twig',array('score'=>$_SESSION['score'], 'state' => $state, 'all_games' => RockPaperScissors::getAll(), 'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf")));
     });
 
     $app->post("/delete", function() use ($app) {
         RockPaperScissors::deleteAll();
 
-        return $app['twig']->render('form.html.twig',array("all_games" => RockPaperScissors::getAll(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => 'default'));
+        return $app['twig']->render('form.html.twig',array('score'=>$_SESSION['score'], "all_games" => RockPaperScissors::getAll(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => 'default'));
     });
 
     return $app;

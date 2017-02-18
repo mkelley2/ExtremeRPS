@@ -1,6 +1,30 @@
 <?php
     class RockPaperScissors
     {
+        // private $player1Score;
+        // private $player2Score;
+        // 
+        // function __construct(){
+        //     $this->player1Score = 0;
+        //     $this->player2Score = 0;
+        // }
+        // 
+        // function getPlayer1Score(){
+        //     return $this->$player1Score;
+        // }
+        // 
+        // function setPlayer1Score($player1Score){
+        //     $this->player1Score = $player1Score;
+        // }
+        // 
+        // function getPlayer2Score(){
+        //     return $this->$player2Score;
+        // }
+        // 
+        // function setPlayer2Score($player2Score){
+        //     $this->player2Score = $player2Score;
+        // }
+      
         function winChecker($player1input, $player2input)
         {
             if($player1input['choice']===$player2input['choice']){
@@ -8,8 +32,10 @@
             }else{
                 $position = array_search($player2input['choice'], $player1input['beats']);
                 if($position!==false){
+                    $_SESSION['score']['player1Score']+=1;
                     return $player1input['player'] . "'s " . $player1input['choice'] . " beats " . $player2input['player'] . "'s " . $player2input['choice'];
                 }else{
+                    $_SESSION['score']['player2Score']+=1;
                     return $player2input['player'] . "'s " . $player2input['choice'] . " beats " . $player1input['player'] . "'s " . $player1input['choice'];
                 }
             }
@@ -78,6 +104,7 @@
 
         static function deleteAll()
         {
+            $_SESSION['score'] = array("player1Score"=>0, "player2Score"=>0);
             $_SESSION['game_rounds'] = array();
         }
 

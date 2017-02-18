@@ -15,7 +15,7 @@
                 <form action="/play" method="post">
                     <div class="row" id="choice-row">
                         <div class="col-md-4" id="box1">
-                            <h1>Player 1</h1>
+                            <h1><strong>Player 1:</strong> {{score.player1Score}}</h1>
                             {%for item in moves %}
                             <label>
                                 <input type="radio" name="choice1" value="{{item}}" checked>
@@ -47,7 +47,7 @@
                           </div>
                         </div>
                         <div class="col-md-4" id="box2">
-                            <h1>Player 2</h1>
+                            <h1><strong>Player 2:</strong> {{score.player2Score}}</h1>
                             {%for item in moves %}
                             <label>
                                 <input type="radio" name="choice2" value="{{item}}" checked>
@@ -69,7 +69,7 @@
               <div class="row" id="choice-row">
                 <div class="col-md-6" id="boxsolo">
                   <form action="/play" method="post">
-                    <h1>Player 1</h1>
+                    <h1><strong>Player 1:</strong> {{score.player1Score}} - <strong>Computer:</strong> {{score.player2Score}} </h1>
                     {%for item in moves %}
                     <label>
                       <input type="radio" name="choice1" value="{{item}}" checked>
