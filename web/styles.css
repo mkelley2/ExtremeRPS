@@ -1,9 +1,9 @@
 input[type="radio"] {
     display: none;
 }
-input[type="radio"]:checked + img {
+/*input[type="radio"]:checked + img {
     border: 1px solid red;
-}
+}*/
 
 .container {
   width: 95%;
@@ -143,3 +143,15 @@ h3.extremeHeader {
   color: red;
 }
 
+.check1 {
+  display: none;
+}
+
+.check2 {
+  display: none;
+}
+
+.checkColor{
+  color: green;
+  
+}
