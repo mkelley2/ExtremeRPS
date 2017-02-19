@@ -3,6 +3,7 @@
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <link rel="stylesheet" href="styles.css" charset="utf-8">
         <title>Extreme Rock Paper Scissors Game</title>
     </head>
@@ -51,7 +52,11 @@
                               {% if all_games is not empty %}
                                   {% for i in 0..(all_games|length-1) %}
                                       {% if i == 0 %}
+                                          {% if moves.player1Moves is empty or moves.player2Moves is empty %}
+                                          <h2 class="animated flip infinite extremeWin"><strong>{{ all_games[0] }}</strong></h2>
+                                          {% else %}
                                           <h2><strong>{{ all_games[0] }}</strong></h2>
+                                          {% endif %}
                                       {% elseif i<=4 %}
                                           <h2>{{ all_games[i] }}</h2>
                                       {% endif %}
