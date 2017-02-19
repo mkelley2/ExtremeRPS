@@ -121,6 +121,21 @@ h3.extremeHeader {
 }
 
 .extreme {
-  font-family: 'Caesar Dressing', cursive;
-  
+  font-family: 'Audiowide', cursive;
+  background-color: black;
 }
+
+.extreme-form {
+  background-color: red;
+  border-radius: 30px;
+}
+
+.extreme .btn-danger {
+  background: black;
+}
+
+.extreme .btn-success {
+  background: yellow;
+  color: black;
+}
+
