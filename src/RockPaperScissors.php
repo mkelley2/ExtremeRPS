@@ -16,10 +16,13 @@
                             array_splice($_SESSION['moves']['player2Moves'], $losingMove, 1);
                             if(empty($_SESSION['moves']['player2Moves'])){
                                 $_SESSION['game_over'] = true;
-                                return $player1input['player'] . " WINS!";
+                                return $player1input['player'] . " ClAIMS VICTORY!";
+                            }else{
+                                return $player1input['player'] . " wins: " . $player1input['choice'] . " demolishes " . $player2input['choice'];
                             }
+                        }else{
+                            return $player1input['player'] . " wins: " . $player1input['choice'] . " beats " . $player2input['choice'];
                         }
-                        return $player1input['player'] . "'s " . $player1input['choice'] . " beats " . $player2input['player'] . "'s " . $player2input['choice'];
                     }else{
                         $_SESSION['score']['player2Score']+=1;
                         if($_SESSION['state']=="soloExtreme" || $_SESSION['state']=="dblExtreme"){
@@ -27,10 +30,13 @@
                             array_splice($_SESSION['moves']['player1Moves'], $losingMove, 1);
                             if(empty($_SESSION['moves']['player1Moves'])){
                                 $_SESSION['game_over'] = true;
-                                return $player2input['player'] . " WINS!";    
+                                return $player2input['player'] . " ClAIMS VICTORY!";
+                            }else{
+                                return $player2input['player'] . " wins: " . $player2input['choice'] . " demolishes " . $player1input['choice'];
                             }
+                        }else{
+                            return $player2input['player'] . " wins: " . $player2input['choice'] . " beats " . $player1input['choice'];
                         }
-                        return $player2input['player'] . "'s " . $player2input['choice'] . " beats " . $player1input['player'] . "'s " . $player1input['choice'];
                     }
                 }
             }
