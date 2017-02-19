@@ -5,39 +5,44 @@
         function winChecker($player1input, $player2input)
         {
             if(!empty($_SESSION['moves']['player2Moves']) && !empty($_SESSION['moves']['player1Moves'])){
-                if($player1input['choice']===$player2input['choice']){
-                    return "Draw";
+                if(count($_SESSION['moves']['player2Moves']) == 1 && count($_SESSION['moves']['player1Moves']) == 1 && $_SESSION['moves']['player2Moves'][0] == $_SESSION['moves']['player1Moves'][0]){
+                    $_SESSION['game_over'] = true;  
+                    return "THE GODS HAVE BEEN DENIED THEIR TRIBUTE!";  
                 }else{
-                    $position = array_search($player2input['choice'], $player1input['beats']);
-                    if($position!==false){
-                        $_SESSION['score']['player1Score']+=1;
-                        if($_SESSION['state']=="soloExtreme" || $_SESSION['state']=="dblExtreme"){
-                            $losingMove = array_search($player2input['choice'], $_SESSION['moves']['player2Moves']);
-                            array_splice($_SESSION['moves']['player2Moves'], $losingMove, 1);
-                            if(empty($_SESSION['moves']['player2Moves'])){
+                    if($player1input['choice']===$player2input['choice']){
+                        return "Draw";
+                    }else{
+                        $position = array_search($player2input['choice'], $player1input['beats']);
+                        if($position!==false){
+                            $_SESSION['score']['player1Score']+=1;
+                            if($_SESSION['state']=="soloExtreme" || $_SESSION['state']=="dblExtreme"){
+                              $losingMove = array_search($player2input['choice'], $_SESSION['moves']['player2Moves']);
+                              array_splice($_SESSION['moves']['player2Moves'], $losingMove, 1);
+                              if(empty($_SESSION['moves']['player2Moves'])){
                                 $_SESSION['game_over'] = true;
                                 return $player1input['player'] . " ClAIMS VICTORY!";
-                            }else{
+                              }else{
                                 return $player1input['player'] . " wins: " . $player1input['choice'] . " demolishes " . $player2input['choice'];
+                              }
+                            }else{
+                              return $player1input['player'] . " wins: " . $player1input['choice'] . " beats " . $player2input['choice'];
                             }
                         }else{
-                            return $player1input['player'] . " wins: " . $player1input['choice'] . " beats " . $player2input['choice'];
-                        }
-                    }else{
-                        $_SESSION['score']['player2Score']+=1;
-                        if($_SESSION['state']=="soloExtreme" || $_SESSION['state']=="dblExtreme"){
-                            $losingMove = array_search($player1input['choice'], $_SESSION['moves']['player1Moves']);
-                            array_splice($_SESSION['moves']['player1Moves'], $losingMove, 1);
-                            if(empty($_SESSION['moves']['player1Moves'])){
+                            $_SESSION['score']['player2Score']+=1;
+                            if($_SESSION['state']=="soloExtreme" || $_SESSION['state']=="dblExtreme"){
+                              $losingMove = array_search($player1input['choice'], $_SESSION['moves']['player1Moves']);
+                              array_splice($_SESSION['moves']['player1Moves'], $losingMove, 1);
+                              if(empty($_SESSION['moves']['player1Moves'])){
                                 $_SESSION['game_over'] = true;
                                 return $player2input['player'] . " ClAIMS VICTORY!";
-                            }else{
+                              }else{
                                 return $player2input['player'] . " wins: " . $player2input['choice'] . " demolishes " . $player1input['choice'];
+                              }
+                            }else{
+                              return $player2input['player'] . " wins: " . $player2input['choice'] . " beats " . $player1input['choice'];
                             }
-                        }else{
-                            return $player2input['player'] . " wins: " . $player2input['choice'] . " beats " . $player1input['choice'];
                         }
-                    }
+                    }  
                 }
             }
         }
