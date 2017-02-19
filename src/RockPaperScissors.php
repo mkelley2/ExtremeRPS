@@ -4,13 +4,15 @@
       
         function winChecker($player1input, $player2input)
         {
+            var_dump($_SESSION['moves']['player1Moves']) . "\n";
+            var_dump($_SESSION['moves']['player2Moves']) . "\n";
             if(!empty($_SESSION['moves']['player2Moves']) && !empty($_SESSION['moves']['player1Moves'])){
                 if(count($_SESSION['moves']['player2Moves']) == 1 && count($_SESSION['moves']['player1Moves']) == 1 && $_SESSION['moves']['player2Moves'][0] == $_SESSION['moves']['player1Moves'][0]){
                     $_SESSION['game_over'] = true;  
                     return "THE GODS HAVE BEEN DENIED THEIR TRIBUTE!";  
                 }else{
                     if($player1input['choice']===$player2input['choice']){
-                        return "Draw";
+                        return "Draw: " . $player1input['choice'] . "vs" . $player2input['choice'];
                     }else{
                         $position = array_search($player2input['choice'], $player1input['beats']);
                         if($position!==false){
@@ -91,7 +93,7 @@
 
         function computerInputSetup()
         {
-            $play_options = $_SESSION['moves']['player1Moves'];
+            $play_options = $_SESSION['moves']['player2Moves'];
 
             $option_index = rand(0, count($play_options)-1);
 
