@@ -24,7 +24,7 @@ input[type="radio"]:checked + img {
   width:90%;
 }
 
-h4, h1, h2, .result {
+h4, h1, h2, h3, .result {
     text-align: center;
 }
 
@@ -108,4 +108,19 @@ select {
 #guide {
     margin: 0 auto;
     display: block;
+}
+
+h1.extremeHeader {
+  color: red;
+  font-size: 60px;
+}
+
+h3.extremeHeader {
+  color: red;
+  font-size: 30px;
+}
+
+.extreme {
+  font-family: 'Caesar Dressing', cursive;
+  
 }
