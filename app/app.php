@@ -11,6 +11,8 @@
     if (empty($_SESSION['game_rounds'])) {
         $_SESSION['score'] = array("player1Score"=>0, "player2Score"=>0);
         $_SESSION['game_rounds'] = array();
+        $_SESSION['moves'] = array('player1Moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'player2Moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"));
+        $_SESSION['game_over'] = false;
     }
 
     $app = new Silex\Application();
@@ -25,13 +27,13 @@
 
     $app->get("/", function() use ($app) {
         // return "Play!";
-        return $app['twig']->render('form.html.twig',array('score'=>$_SESSION['score'], 'all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => "default"));
+        return $app['twig']->render('form.html.twig',array('score'=>$_SESSION['score'], 'all_games'=>array(),'moves'=>$_SESSION['moves'], 'state' => "default"));
     });
     $app->post("/", function() use ($app) {
         if(isset($_POST['player-choice'])) {
             $_SESSION['state'] = $_POST['player-choice'];
         }
-        return $app['twig']->render('play.html.twig',array('score'=>$_SESSION['score'], 'all_games'=>array(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => $_SESSION['state']));
+        return $app['twig']->render('play.html.twig',array("game_over"=> $_SESSION['game_over'], 'score'=>$_SESSION['score'], 'all_games'=>array(),'moves'=>$_SESSION['moves'], 'state' => $_SESSION['state']));
 
     });
 
@@ -39,7 +41,7 @@
 
         $new_game = new RockPaperScissors();
         $state = $_SESSION['state'];
-        if($state == 'single') {
+        if($state == 'single' || $state == 'soloExtreme') {
             if(isset($_POST['choice1'])) {
                 $clicked1 = $_POST['choice1'];
             }else{
@@ -65,13 +67,13 @@
         // var_dump($_SESSION['score']);
 
 
-        return $app['twig']->render('play.html.twig',array('score'=>$_SESSION['score'], 'state' => $state, 'all_games' => RockPaperScissors::getAll(), 'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf")));
+        return $app['twig']->render('play.html.twig',array("game_over"=> $_SESSION['game_over'], 'score'=>$_SESSION['score'], 'state' => $state, 'all_games' => RockPaperScissors::getAll(), 'moves'=>$_SESSION['moves']));
     });
 
     $app->post("/delete", function() use ($app) {
         RockPaperScissors::deleteAll();
 
-        return $app['twig']->render('form.html.twig',array('score'=>$_SESSION['score'], "all_games" => RockPaperScissors::getAll(),'moves'=>array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf"), 'state' => 'default'));
+        return $app['twig']->render('form.html.twig',array("game_over"=> $_SESSION['game_over'], 'score'=>$_SESSION['score'], "all_games" => RockPaperScissors::getAll(),'moves'=>$_SESSION['moves'], 'state' => 'default'));
     });
 
     return $app;

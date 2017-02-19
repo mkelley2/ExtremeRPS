@@ -10,13 +10,13 @@
       <div class="container">
           <h1>Extreme Rock Paper Scissors Game</h1>
 
-          {% if state == 'double' %}
+          {% if state == 'double' or state == 'dblExtreme' or state == 'soloExtreme'%}
               <div class="whole-form">
                 <form action="/play" method="post">
                     <div class="row" id="choice-row">
                         <div class="col-md-4" id="box1">
                             <h1><strong>Player 1:</strong> {{score.player1Score}}</h1>
-                            {%for item in moves %}
+                            {%for item in moves.player1Moves %}
                             <label>
                                 <input type="radio" name="choice1" value="{{item}}" checked>
                                 <img src="/img/{{item}}.png">
@@ -25,9 +25,11 @@
                             {% endfor %}
                         </div>
                         <div class="col-md-4" id="boxResult">
-                          <div class="row submitBtn">
-                            <button type="submit" class="btn btn-success">Submit</button>
-                          </div>
+                          {% if game_over == false %}
+                              <div class="row submitBtn">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                              </div>
+                          {% endif %}
                           <div class="result">
 
 
@@ -47,10 +49,18 @@
                           </div>
                         </div>
                         <div class="col-md-4" id="box2">
-                            <h1><strong>Player 2:</strong> {{score.player2Score}}</h1>
-                            {%for item in moves %}
+                            {% if state == 'soloExtreme'%}
+                                <h1><strong>Computer:</strong> {{score.player2Score}}</h1>
+                            {% else %}
+                                <h1><strong>Player 2:</strong> {{score.player2Score}}</h1>
+                            {% endif %}
+                            {%for item in moves.player2Moves %}
                             <label>
-                                <input type="radio" name="choice2" value="{{item}}" checked>
+                                {% if state == 'soloExtreme'%}
+                                    <input type="radio" name="choice2" value="{{item}}" disabled>
+                                {% else %}
+                                    <input type="radio" name="choice2" value="{{item}}" checked>
+                                {% endif %}
                                 <img src="/img/{{item}}.png">
                                 <h4>{{item}}</h4>
                             </label>
@@ -70,16 +80,18 @@
                 <div class="col-md-6" id="boxsolo">
                   <form action="/play" method="post">
                     <h1><strong>Player 1:</strong> {{score.player1Score}} - <strong>Computer:</strong> {{score.player2Score}} </h1>
-                    {%for item in moves %}
+                    {%for item in moves.player1Moves %}
                     <label>
                       <input type="radio" name="choice1" value="{{item}}" checked>
                       <img src="/img/{{item}}.png">
                       <h4>{{item}}</h4>
                     </label>
                     {% endfor %}
-                    <div class="row submitBtn">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
+                    {% if game_over == false %}
+                        <div class="row submitBtn">
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    {% endif %}
                   </form>
                 </div>
                 <div class="col-md-6 singleResult">

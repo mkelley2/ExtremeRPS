@@ -1,42 +1,37 @@
 <?php
     class RockPaperScissors
     {
-        // private $player1Score;
-        // private $player2Score;
-        // 
-        // function __construct(){
-        //     $this->player1Score = 0;
-        //     $this->player2Score = 0;
-        // }
-        // 
-        // function getPlayer1Score(){
-        //     return $this->$player1Score;
-        // }
-        // 
-        // function setPlayer1Score($player1Score){
-        //     $this->player1Score = $player1Score;
-        // }
-        // 
-        // function getPlayer2Score(){
-        //     return $this->$player2Score;
-        // }
-        // 
-        // function setPlayer2Score($player2Score){
-        //     $this->player2Score = $player2Score;
-        // }
       
         function winChecker($player1input, $player2input)
         {
-            if($player1input['choice']===$player2input['choice']){
-                return "Draw";
-            }else{
-                $position = array_search($player2input['choice'], $player1input['beats']);
-                if($position!==false){
-                    $_SESSION['score']['player1Score']+=1;
-                    return $player1input['player'] . "'s " . $player1input['choice'] . " beats " . $player2input['player'] . "'s " . $player2input['choice'];
+            if(!empty($_SESSION['moves']['player2Moves']) && !empty($_SESSION['moves']['player1Moves'])){
+                if($player1input['choice']===$player2input['choice']){
+                    return "Draw";
                 }else{
-                    $_SESSION['score']['player2Score']+=1;
-                    return $player2input['player'] . "'s " . $player2input['choice'] . " beats " . $player1input['player'] . "'s " . $player1input['choice'];
+                    $position = array_search($player2input['choice'], $player1input['beats']);
+                    if($position!==false){
+                        $_SESSION['score']['player1Score']+=1;
+                        if($_SESSION['state']=="soloExtreme" || $_SESSION['state']=="dblExtreme"){
+                            $losingMove = array_search($player2input['choice'], $_SESSION['moves']['player2Moves']);
+                            array_splice($_SESSION['moves']['player2Moves'], $losingMove, 1);
+                            if(empty($_SESSION['moves']['player2Moves'])){
+                                $_SESSION['game_over'] = true;
+                                return $player1input['player'] . " WINS!";
+                            }
+                        }
+                        return $player1input['player'] . "'s " . $player1input['choice'] . " beats " . $player2input['player'] . "'s " . $player2input['choice'];
+                    }else{
+                        $_SESSION['score']['player2Score']+=1;
+                        if($_SESSION['state']=="soloExtreme" || $_SESSION['state']=="dblExtreme"){
+                            $losingMove = array_search($player1input['choice'], $_SESSION['moves']['player1Moves']);
+                            array_splice($_SESSION['moves']['player1Moves'], $losingMove, 1);
+                            if(empty($_SESSION['moves']['player1Moves'])){
+                                $_SESSION['game_over'] = true;
+                                return $player2input['player'] . " WINS!";    
+                            }
+                        }
+                        return $player2input['player'] . "'s " . $player2input['choice'] . " beats " . $player1input['player'] . "'s " . $player1input['choice'];
+                    }
                 }
             }
         }
@@ -85,7 +80,7 @@
 
         function computerInputSetup()
         {
-            $play_options = array("rock", "air", "devil", "dragon", "fire", "gun", "human", "lightning", "paper", "scissors", "snake", "sponge", "tree", "water", "wolf");
+            $play_options = $_SESSION['moves']['player1Moves'];
 
             $option_index = rand(0, count($play_options)-1);
 
@@ -106,6 +101,7 @@
         {
             $_SESSION['score'] = array("player1Score"=>0, "player2Score"=>0);
             $_SESSION['game_rounds'] = array();
+            $_SESSION['game_over'] = false;
         }
 
 
