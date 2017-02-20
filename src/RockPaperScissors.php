@@ -1,13 +1,14 @@
 <?php
     class RockPaperScissors
     {
-      
+
         function winChecker($player1input, $player2input)
         {
             if(!empty($_SESSION['moves']['player2Moves']) && !empty($_SESSION['moves']['player1Moves'])){
                 if(count($_SESSION['moves']['player2Moves']) == 1 && count($_SESSION['moves']['player1Moves']) == 1 && $_SESSION['moves']['player2Moves'][0] == $_SESSION['moves']['player1Moves'][0]){
-                    $_SESSION['game_over'] = true;  
-                    return "THE GODS HAVE BEEN DENIED THEIR TRIBUTE!";  
+                    $_SESSION['game_over'] = true;
+                    $_SESSION['tie_game'] = true;
+                    return "THE GODS HAVE BEEN DENIED THEIR TRIBUTE!";
                 }else{
                     if($player1input['choice']===$player2input['choice']){
                         return "Draw";
@@ -42,7 +43,7 @@
                               return $player2input['player'] . " wins: " . $player2input['choice'] . " beats " . $player1input['choice'];
                             }
                         }
-                    }  
+                    }
                 }
             }
         }
@@ -113,6 +114,7 @@
             $_SESSION['score'] = array("player1Score"=>0, "player2Score"=>0);
             $_SESSION['game_rounds'] = array();
             $_SESSION['game_over'] = false;
+            $_SESSION['tie_game'] = false;
         }
 
 

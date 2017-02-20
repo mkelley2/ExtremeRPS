@@ -60,7 +60,7 @@
                               {% if all_games is not empty %}
                                   {% for i in 0..(all_games|length-1) %}
                                       {% if i == 0 %}
-                                          {% if moves.player1Moves is empty or moves.player2Moves is empty %}
+                                          {% if moves.player1Moves is empty or moves.player2Moves is empty or tie == true %}
                                           <h2 class="animated flip infinite extremeWin"><strong>{{ all_games[0] }}</strong></h2>
                                           {% else %}
                                           <h2><strong>{{ all_games[0] }}</strong></h2>
